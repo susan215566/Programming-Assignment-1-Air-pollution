@@ -1,0 +1,24 @@
+---
+title: 'Pollutantmean'
+author: "Jiaoping"
+date: "June 14, 2015"
+output: html_document
+---
+```{r,cache=TRUE}
+ pollutantmean <- function(directory, pollutant, id = 1:332) {
+       files_full<-list.files(directory, full.names=TRUE)
+       tmp<-vector(mode="list", length=length(files_full))
+       for(i in seq_along(files_full)) {
+               tmp[[i]]<-read.csv(files_full[[i]])
+       output<-do.call(rbind, tmp)}
+       opt_sub<-output[which(output[,"ID"]==id),]
+     mean(opt_sub[, pollutant], na.rm=TRUE) 
+ 
+}
+```
+
+```{r}
+pollutantmean("specdata","sulfate" , 32)
+```
+
+
